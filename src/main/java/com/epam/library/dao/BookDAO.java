@@ -13,7 +13,7 @@ public interface BookDAO {
 
     void updateBook(Book book);
 
-    List<Book> query(BookField bookField, String query);
+    <T> List<Book> query(BookField bookField, T query);
 
-    List<Book> getAllBooks();
+    List<Book> getSorted(BookField bookField);
 }

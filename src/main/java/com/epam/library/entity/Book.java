@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/* JavaBean Pattern with Builder */
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 7513582616386546656L;
@@ -69,8 +70,12 @@ public class Book implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Book book = (Book) o;
         return id == book.id &&
                 year == book.year &&

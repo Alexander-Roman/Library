@@ -2,12 +2,13 @@ package com.epam.library.dao;
 
 import com.epam.library.entity.Book;
 import com.epam.library.entity.BookField;
-import com.epam.library.specification.BookSpecification;
-import com.epam.library.specification.factory.BookSpecificationFactory;
-import com.epam.library.specification.factory.BookSpecificationFactoryProvider;
+import com.epam.library.logic.sort.BookSorter;
+import com.epam.library.logic.sort.BookSorterFactory;
+import com.epam.library.dao.specification.BookSpecification;
+import com.epam.library.dao.specification.factory.BookSpecificationFactory;
+import com.epam.library.dao.specification.factory.BookSpecificationFactoryProvider;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -39,7 +40,7 @@ public class ListBookDAO implements BookDAO {
     }
 
     @Override
-    public List<Book> query(BookField bookField, String query) {
+    public <T> List<Book> query(BookField bookField, T query) {
         BookSpecificationFactory factory = BookSpecificationFactoryProvider.createFactoryByBookField(bookField);
         BookSpecification specification = factory.create(query);
 
@@ -50,14 +51,19 @@ public class ListBookDAO implements BookDAO {
     }
 
     @Override
-    public List<Book> getAllBooks() {
-        return Collections.unmodifiableList(books);
+    public List<Book> getSorted(BookField bookField) {
+        BookSorter sorter = BookSorterFactory.creteBookSorterByBookField(bookField);
+        return sorter.sortAscending(books);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ListBookDAO that = (ListBookDAO) o;
         return Objects.equals(books, that.books);
     }

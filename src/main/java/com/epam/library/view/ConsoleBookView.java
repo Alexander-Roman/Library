@@ -35,12 +35,11 @@ public class ConsoleBookView implements BookView {
     private String getStringAuthors(Book book) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String author : book.getAuthors()) {
-            stringBuilder
-                    .append(author)
-                    .append(", ");
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append(author);
         }
-        int length = stringBuilder.length();
-        stringBuilder.delete(length - 2, length - 1);
         return stringBuilder.toString();
     }
 

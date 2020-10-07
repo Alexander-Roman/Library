@@ -1,4 +1,4 @@
-package com.epam.library.specification;
+package com.epam.library.dao.specification;
 
 import com.epam.library.entity.Book;
 

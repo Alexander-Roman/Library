@@ -20,8 +20,6 @@ import com.epam.library.data.HardCodeListBookDAOProvider;
 import com.epam.library.data.ListBookDAOProvider;
 import com.epam.library.entity.Book;
 import com.epam.library.entity.BookField;
-import com.epam.library.logic.sort.BookSorter;
-import com.epam.library.logic.sort.BookSorterFactory;
 import com.epam.library.view.BookView;
 import com.epam.library.view.ConsoleBookView;
 import org.apache.logging.log4j.Level;
@@ -40,16 +38,16 @@ public class Runner {
         BookDAO bookDAO = provider.getListBookDAO();
         BookView view = new ConsoleBookView();
 
-        LOGGER.log(Level.INFO, "Initial list of books:");
-        List<Book> initial = bookDAO.getAllBooks();
+
+        LOGGER.log(Level.INFO, "Initial list of books sorted by title:");
+        List<Book> initial = bookDAO.getSorted(BookField.TITLE);
         view.printBooksList(initial);
 
-        BookField sortingField = BookField.TITLE;
-        BookSorter sorter = BookSorterFactory.creteBookSorterByBookField(sortingField);
 
-        LOGGER.log(Level.INFO, "Sorted list of books:");
-        List<Book> sorted = sorter.sortAscending(initial);
+        LOGGER.log(Level.INFO, "List of books sorted by author:");
+        List<Book> sorted = bookDAO.getSorted(BookField.AUTHOR);
         view.printBooksList(sorted);
+
 
         BookField queryField = BookField.YEAR;
         LOGGER.log(Level.INFO, "Queried list of books:");

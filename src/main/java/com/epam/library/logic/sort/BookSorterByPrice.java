@@ -8,9 +8,10 @@ import java.util.stream.Collectors;
 
 public class BookSorterByPrice implements BookSorter {
 
+    private final Comparator<Book> comparator = Comparator.comparing(Book::getPrice);
+
     @Override
     public List<Book> sortAscending(List<Book> books) {
-        Comparator<Book> comparator = Comparator.comparing(Book::getPrice);
         return books
                 .stream()
                 .sorted(comparator)
@@ -19,10 +20,9 @@ public class BookSorterByPrice implements BookSorter {
 
     @Override
     public List<Book> sortDescending(List<Book> books) {
-        Comparator<Book> comparator = Comparator.comparing(Book::getPrice).reversed();
         return books
                 .stream()
-                .sorted(comparator)
+                .sorted(comparator.reversed())
                 .collect(Collectors.toList());
     }
 }
