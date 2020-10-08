@@ -2,16 +2,15 @@ package com.epam.library.dao.specification;
 
 import com.epam.library.entity.Book;
 
-public class BookSpecificationByYear<T> implements BookSpecification {
+public class BookSpecificationByYear<T> extends AbstractBookSpecification<T> {
 
-    private final T year;
-
-    public BookSpecificationByYear(T year) {
-        this.year = year;
+    public BookSpecificationByYear(T query) {
+        super(query);
     }
 
     @Override
     public boolean specified(Book book) {
-        return book.getYear() == Integer.parseInt(year.toString());
+        int year = Integer.parseInt(getQuery().toString());
+        return book.getYear() == year;
     }
 }

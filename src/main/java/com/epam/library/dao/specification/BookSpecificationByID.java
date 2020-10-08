@@ -2,16 +2,15 @@ package com.epam.library.dao.specification;
 
 import com.epam.library.entity.Book;
 
-public class BookSpecificationByID<T> implements BookSpecification {
+public class BookSpecificationByID<T> extends AbstractBookSpecification<T> {
 
-    private final T id;
-
-    public BookSpecificationByID(T id) {
-        this.id = id;
+    public BookSpecificationByID(T query) {
+        super(query);
     }
 
     @Override
     public boolean specified(Book book) {
-        return book.getId() == Long.parseLong(id.toString());
+        long id = Long.parseLong(getQuery().toString());
+        return book.getId() == id;
     }
 }

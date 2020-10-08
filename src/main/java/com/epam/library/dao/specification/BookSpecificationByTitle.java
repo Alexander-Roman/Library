@@ -2,18 +2,16 @@ package com.epam.library.dao.specification;
 
 import com.epam.library.entity.Book;
 
-public class BookSpecificationByTitle<T> implements BookSpecification {
+public class BookSpecificationByTitle<T> extends AbstractBookSpecification<T> {
 
-    private final T title;
-
-    public BookSpecificationByTitle(T title) {
-        this.title = title;
+    public BookSpecificationByTitle(T query) {
+        super(query);
     }
 
     @Override
     public boolean specified(Book book) {
         return book
                 .getTitle()
-                .equals(title);
+                .equals(getQuery());
     }
 }

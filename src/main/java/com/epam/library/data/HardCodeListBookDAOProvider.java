@@ -37,7 +37,7 @@ public class HardCodeListBookDAOProvider implements ListBookDAOProvider {
                 .price(BigDecimal.valueOf(37.04))
                 .build();
 
-        Book proSpring5 = new Book
+        Book proSpringFive = new Book
                 .Builder(9781484228074L, "Pro Spring 5: An In-Depth Guide to the Spring Framework and Its Tools")
                 .author("Iuliana Cosmina")
                 .author("Rob Harrop")
@@ -66,7 +66,7 @@ public class HardCodeListBookDAOProvider implements ListBookDAOProvider {
         listBookDAO.addBook(cleanCode);
         listBookDAO.addBook(codeComplete);
         listBookDAO.addBook(thinkingInJava);
-        listBookDAO.addBook(proSpring5);
+        listBookDAO.addBook(proSpringFive);
         listBookDAO.addBook(javaTheCompleteReference);
         listBookDAO.addBook(javaEE7Essentials);
 
