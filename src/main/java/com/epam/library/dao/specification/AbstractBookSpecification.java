@@ -1,16 +1,14 @@
 package com.epam.library.dao.specification;
 
-import com.epam.library.entity.Book;
+public abstract class AbstractBookSpecification implements BookSpecification {
 
-public abstract class AbstractBookSpecification<T> implements BookSpecification {
+    private final String fieldValue;
 
-    private final T query;
-
-    public AbstractBookSpecification(T query) {
-        this.query = query;
+    public AbstractBookSpecification(String fieldValue) {
+        this.fieldValue = fieldValue;
     }
 
-    public T getQuery() {
-        return query;
+    public String getFieldValue() {
+        return fieldValue;
     }
 }

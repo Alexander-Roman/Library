@@ -4,5 +4,5 @@ import com.epam.library.dao.specification.BookSpecification;
 
 public interface BookSpecificationFactory {
 
-    <T> BookSpecification create(T query);
+    BookSpecification create(String fieldValue);
 }

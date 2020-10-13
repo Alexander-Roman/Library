@@ -7,17 +7,17 @@ public class BookSpecificationFactoryProvider {
     public static BookSpecificationFactory createFactoryByBookField(BookField bookField) {
         switch (bookField) {
             case ID:
-                return new BookSpecificationByIDFactory();
+                return new IdSpecificationFactory();
             case TITLE:
-                return new BookSpecificationByTitleFactory();
+                return new TitleSpecificationFactory();
             case AUTHOR:
-                return new BookSpecificationByAuthorFactory();
+                return new AuthorSpecificationFactory();
             case YEAR:
-                return new BookSpecificationByYearFactory();
+                return new YearSpecificationFactory();
             case PRICE:
-                return new BookSpecificationByPriceFactory();
+                return new PriceSpecificationFactory();
             default:
-                throw new RuntimeException(bookField + " is unknown BookField!");
+                throw new IllegalArgumentException(bookField + " is unknown BookField!");
         }
     }
 }
